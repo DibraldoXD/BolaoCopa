@@ -1,0 +1,34 @@
+# Ambiente virtual
+.venv/
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Streamlit — nunca committar credenciais
+.streamlit/secrets.toml
+
+# Variáveis de ambiente locais
+.env
+
+# Dados de treinamento (3.6 MB — baixar separado via pipeline)
+data/results.csv
+
+# Claude Code — config local, skills e planejamento interno
+.claude/
+skills/
+.mcp.json
+.llm/
+
+# Referências de design internas
+pics/
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
