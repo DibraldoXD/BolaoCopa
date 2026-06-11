@@ -36,7 +36,11 @@ with st.expander("Como funciona a simulação?"):
     As probabilidades *médias* de 1.000 simulações estão na página **Probabilidades**.
     """)
 
-preparado = get_preparado()
+try:
+    preparado = get_preparado()
+except Exception as e:
+    st.warning(f"Simulação indisponível — configure DATABASE_URL nos secrets do Streamlit Cloud. ({e})")
+    st.stop()
 
 if st.button("🔄 Simular novamente") or "sim_result" not in st.session_state:
     with st.spinner("Simulando o torneio completo..."):

@@ -48,7 +48,11 @@ with st.expander("Como essas probabilidades foram calculadas?"):
     | **Resultado** | Cada célula = % de simulações em que a seleção atingiu aquela fase |
     """)
 
-df = load_probabilidades()
+try:
+    df = load_probabilidades()
+except Exception as e:
+    st.warning(f"Previsões IA indisponíveis — configure DATABASE_URL nos secrets do Streamlit Cloud. ({e})")
+    st.stop()
 df["nome_ptbr"] = df["selecao"].apply(traduzir)
 
 # Gráfico de barras — nomes PT-BR no eixo

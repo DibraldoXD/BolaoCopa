@@ -36,7 +36,11 @@ with st.expander("Como funciona a previsão?"):
     As previsões são baseadas no desempenho histórico; resultados reais podem surpreender.
     """)
 
-mc, mv, elo_dict = get_modelos()
+try:
+    mc, mv, elo_dict = get_modelos()
+except Exception as e:
+    st.warning(f"Explorador indisponível — configure DATABASE_URL nos secrets do Streamlit Cloud. ({e})")
+    st.stop()
 todos = sorted(elo_dict.keys())
 
 col1, col2 = st.columns(2)
