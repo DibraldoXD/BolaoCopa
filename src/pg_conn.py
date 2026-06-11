@@ -5,9 +5,23 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+def _get_url() -> str:
+    url = os.environ.get("DATABASE_URL")
+    if url:
+        return url
+    try:
+        import streamlit as st
+        url = st.secrets.get("DATABASE_URL")
+        if url:
+            os.environ["DATABASE_URL"] = url
+            return url
+    except Exception:
+        pass
+    raise KeyError("DATABASE_URL")
+
+
 def get_engine():
-    url = os.environ["DATABASE_URL"]
-    return create_engine(url)
+    return create_engine(_get_url())
 
 
 def get_raw_connection():
