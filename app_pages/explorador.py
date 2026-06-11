@@ -1,5 +1,12 @@
+import os
 import streamlit as st
 from bandeiras import team_flag_html, traduzir
+
+if "DATABASE_URL" not in os.environ:
+    try:
+        os.environ["DATABASE_URL"] = str(st.secrets["DATABASE_URL"])
+    except Exception:
+        pass
 
 try:
     from previsao import PESO_TORNEIO_COPA, carregar_modelos, prever_jogo

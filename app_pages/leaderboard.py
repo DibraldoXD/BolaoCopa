@@ -1,7 +1,14 @@
+import os
 import pandas as pd
 import streamlit as st
 
 from src.db import get_leaderboard
+
+if "DATABASE_URL" not in os.environ:
+    try:
+        os.environ["DATABASE_URL"] = str(st.secrets["DATABASE_URL"])
+    except Exception:
+        pass
 
 # ── Auth guard ────────────────────────────────────────────────────────────────
 user = st.session_state.get("user")

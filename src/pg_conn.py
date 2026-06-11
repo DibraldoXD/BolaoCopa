@@ -5,23 +5,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def _get_url() -> str:
-    url = os.environ.get("DATABASE_URL")
-    if url:
-        return url
-    try:
-        import streamlit as st
-        url = st.secrets.get("DATABASE_URL")
-        if url:
-            os.environ["DATABASE_URL"] = url
-            return url
-    except Exception:
-        pass
-    raise KeyError("DATABASE_URL")
-
-
 def get_engine():
-    return create_engine(_get_url())
+    url = os.environ.get("DATABASE_URL")
+    if not url:
+        raise RuntimeError(
+            "DATABASE_URL não encontrado. Configure nos Streamlit Cloud Secrets."
+        )
+    return create_engine(url)
 
 
 def get_raw_connection():

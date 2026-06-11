@@ -1,4 +1,12 @@
+import os
 import streamlit as st
+
+# Garante DATABASE_URL em os.environ a partir dos secrets do Streamlit Cloud
+if "DATABASE_URL" not in os.environ:
+    try:
+        os.environ["DATABASE_URL"] = str(st.secrets["DATABASE_URL"])
+    except Exception:
+        pass
 
 try:
     import altair as alt
