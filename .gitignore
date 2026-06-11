@@ -20,6 +20,7 @@ data/results.csv
 skills/
 .mcp.json
 .llm/
+CLAUDE.md
 
 # Referências de design internas
 pics/
