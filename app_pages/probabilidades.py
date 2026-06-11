@@ -1,8 +1,19 @@
-import altair as alt
-import pandas as pd
 import streamlit as st
-from bandeiras import team_flag_html, traduzir
-from pg_conn import get_engine
+
+try:
+    import altair as alt
+    import pandas as pd
+    from bandeiras import team_flag_html, traduzir
+    from pg_conn import get_engine
+    _ML_OK = True
+except Exception as _e:
+    _ML_OK = False
+    _ML_ERRO = str(_e)
+
+if not _ML_OK:
+    st.error(f"Pipeline ML não disponível: {_ML_ERRO}", icon=":material/error:")
+    st.info("Verifique se DATABASE_URL está configurado nos secrets do Streamlit Cloud.")
+    st.stop()
 
 FASES = {
     "prob_grupo":   "Grupos",

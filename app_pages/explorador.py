@@ -1,6 +1,17 @@
 import streamlit as st
 from bandeiras import team_flag_html, traduzir
-from previsao import PESO_TORNEIO_COPA, carregar_modelos, prever_jogo
+
+try:
+    from previsao import PESO_TORNEIO_COPA, carregar_modelos, prever_jogo
+    _ML_OK = True
+except Exception as _e:
+    _ML_OK = False
+    _ML_ERRO = str(_e)
+
+if not _ML_OK:
+    st.error(f"Pipeline ML não disponível: {_ML_ERRO}", icon=":material/error:")
+    st.info("Verifique se DATABASE_URL está configurado nos secrets do Streamlit Cloud.")
+    st.stop()
 
 
 @st.cache_resource

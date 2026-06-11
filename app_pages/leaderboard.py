@@ -103,7 +103,10 @@ with tab_ia:
     try:
         merged = load_previsao_grupos()
     except Exception as e:
-        st.error(f"Não foi possível carregar a previsão IA: {e}")
+        st.warning(
+            f"Previsão IA indisponível — pipeline ML não configurado. ({e})",
+            icon=":material/info:",
+        )
         st.stop()
 
     from bandeiras import team_flag_html

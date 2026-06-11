@@ -1,6 +1,17 @@
 import streamlit as st
 from bandeiras import team_flag_html
-from monte_carlo import NOMES_RODADA, preparar, simular_torneio_detalhado
+
+try:
+    from monte_carlo import NOMES_RODADA, preparar, simular_torneio_detalhado
+    _ML_OK = True
+except Exception as _e:
+    _ML_OK = False
+    _ML_ERRO = str(_e)
+
+if not _ML_OK:
+    st.error(f"Pipeline ML não disponível: {_ML_ERRO}", icon=":material/error:")
+    st.info("Verifique se DATABASE_URL está configurado nos secrets do Streamlit Cloud.")
+    st.stop()
 
 
 @st.cache_resource
