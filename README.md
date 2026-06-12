@@ -1,10 +1,11 @@
 # ⚽ Copa 2026 — Bolão Inteligente
 
-> Plataforma web que combina um **bolão de palpites** da Copa do Mundo 2026 com um **motor de previsão por IA** baseado em simulação Monte Carlo e modelos estatísticos.
+> Plataforma web que combina um **bolão de palpites** da Copa do Mundo 2026 com um **motor de previsão por IA** baseado em simulação Monte Carlo e modelos estatísticos. 
 
-![Design](pics/image.png)
+Link para teste:
+https://bolaocopa-8evkqdfh4hngmarw4sdgvw.streamlit.app
 
----
+
 
 ## ✨ Funcionalidades
 
@@ -198,7 +199,7 @@ uv run python -m src.simulate            # Monte Carlo 1.000x
 1. Faça o fork ou push para o GitHub
 2. Acesse [share.streamlit.io](https://share.streamlit.io) e conecte o repositório
 3. Main file: `app.py`
-4. Em **Secrets**, adicione o conteúdo do `secrets.toml`
+4. Em **Secrets**, adicione:
 
 ---
 
